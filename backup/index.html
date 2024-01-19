@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Real-Time Text Editor</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@8/dist/umd.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var roomId = window.location.pathname.split('/')[1];
+    	    var socket = io({ query: { roomId: roomId } });
+	    var socket = io();
+            var textarea = document.getElementById('text');
+
+            textarea.addEventListener('input', function() {
+                var text = textarea.value;
+                socket.emit('text change', text);
+            });
+
+            socket.on('text update', function(text) {
+                textarea.value = text;
+            });
+        });
+    </script>
+</head>
+<body>
+    <textarea id="text" rows="10" cols="50"></textarea>
+</body>
+</html>
+

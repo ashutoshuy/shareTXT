@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Room ID</title>
+</head>
+<body>
+    <h2>Enter Room ID</h2>
+    <input type="text" id="roomId" placeholder="Room ID">
+    <button onclick="enterRoom()">Enter Room</button>
+
+    <script>
+        function enterRoom() {
+            var roomId = document.getElementById('roomId').value;
+            if (!roomId) {
+                alert("Please enter a room ID.");
+                return;
+            }
+            window.location.href = '/' + roomId;
+        }
+    </script>
+</body>
+</html>
+
